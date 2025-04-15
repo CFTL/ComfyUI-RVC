@@ -40,11 +40,11 @@ class RVC_Infer:
                 "display": "slider"
             }),
             "file_index": (index_list,),
-            
+
             "f0_method":(["pm", "harvest", "crepe", "rmvpe"],
                 {
                     "default": "rmvpe"
-                    
+
             }),
             "resample_sr":("INT",{
                 "min":0,
@@ -82,13 +82,13 @@ class RVC_Infer:
                 "display": "slider"
             }),
         }}
-    
-    CATEGORY = "AIFSH_RVC"
+
+    CATEGORY = "🎲RVC"
     RETURN_TYPES = ("AUDIO",)
     OUTPUT_NODE = False
 
     FUNCTION = "inference"
-    
+
     def inference(self,audio,sid,spk_item,vc_transform,
                   file_index,f0_method,resample_sr,rms_mix_rate,
                   protect,filter_radius,index_rate):
@@ -166,13 +166,13 @@ class RVC_Train:
                 "default": False
             }),
         }}
-        
-    CATEGORY = "AIFSH_RVC"
+
+    CATEGORY = "🎲RVC"
     RETURN_TYPES = ()
     OUTPUT_NODE = True
 
     FUNCTION = "train"
-    
+
     def train(self,audio,exp_name,sr,if_f0_3,version,
              speaker_id,f0_method,save_epoch,total_epoch,
              batch_size,if_save_latest,if_cache_gpu,
@@ -189,10 +189,10 @@ class RVC_Train:
         n_p = int(np.ceil(cpu_count() / 1.5))
         gpus_rmvpe="%s-%s" % (gpus, gpus)
         preprocess_dataset(trainset_dir,exp_dir=exp_name,sr=sr,n_p=n_p)
-        
+
         # step 2
         extract_f0_feature(gpus,n_p,f0method=f0_method,if_f0=if_f0_3,exp_dir=exp_name,version19=version,gpus_rmvpe=gpus_rmvpe)
-        
+
         path_str = "" if version == "v1" else "_v2"
         f0_str = "f0" if if_f0_3 else ""
         '''
@@ -222,7 +222,7 @@ class CombineAudio:
                      }
                 }
 
-    CATEGORY = "AIFSH_RVC"
+    CATEGORY = "🎲RVC"
     DESCRIPTION = "hello world!"
 
     RETURN_TYPES = ("AUDIO",)
@@ -246,7 +246,7 @@ class PreViewAudio:
                     {"audio": ("AUDIO",),}
                 }
 
-    CATEGORY = "AIFSH_RVC"
+    CATEGORY = "🎲RVC"
     DESCRIPTION = "hello world!"
 
     RETURN_TYPES = ()
@@ -261,7 +261,7 @@ class PreViewAudio:
         audio_root = os.path.basename(tmp_path)
         return {"ui": {"audio":[audio_name,audio_root]}}
 
-class LoadAudio:
+class UPLoadAudio:
     @classmethod
     def INPUT_TYPES(s):
         files = [f for f in os.listdir(input_path) if os.path.isfile(os.path.join(input_path, f)) and f.split('.')[-1] in ["wav", "mp3","WAV","flac","m4a"]]
@@ -269,7 +269,7 @@ class LoadAudio:
                     {"audio": (sorted(files),)},
                 }
 
-    CATEGORY = "AIFSH_RVC"
+    CATEGORY = "🎲RVC"
 
     RETURN_TYPES = ("AUDIO",)
     FUNCTION = "load_audio"

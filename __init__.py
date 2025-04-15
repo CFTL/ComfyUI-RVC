@@ -37,7 +37,7 @@ else:
 
 
 WEB_DIRECTORY = "./web"
-from .nodes import LoadAudio, PreViewAudio,RVC_Train,RVC_Infer,CombineAudio
+from .nodes import UPLoadAudio, PreViewAudio,RVC_Train,RVC_Infer,CombineAudio
 
 # Set the web directory, any .js file in that directory will be loaded by the frontend as a frontend extension
 # WEB_DIRECTORY = "./somejs"
@@ -45,7 +45,7 @@ from .nodes import LoadAudio, PreViewAudio,RVC_Train,RVC_Infer,CombineAudio
 # A dictionary that contains all nodes you want to export with their names
 # NOTE: names should be globally unique
 NODE_CLASS_MAPPINGS = {
-    "LoadAudio": LoadAudio,
+    "UPLoadAudio": UPLoadAudio,
     "PreViewAudio": PreViewAudio,
     "RVC_Train": RVC_Train,
     "RVC_Infer": RVC_Infer,
@@ -54,7 +54,7 @@ NODE_CLASS_MAPPINGS = {
 
 # A dictionary that contains the friendly/humanly readable titles for the nodes
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "LoadAudio": "AudioLoader",
+    "UPLoadAudio": "AudioUPLoader",
     "PreViewAudio": "PreView Audio",
     "RVC_Train": "RVC Train",
     "RVC_Infer": "RVC Inference",
